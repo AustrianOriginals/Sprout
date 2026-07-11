@@ -1,4 +1,4 @@
-# Plant Care App
+# Sprout
 An offline-first plant care tracker focused on **reliable scheduling**, **data privacy**, and a **mobile-first** experience.
 
 The app helps users track plant care schedules by calculating watering, fertilizing, and repotting intervals based on multiple plant-specific factors such as:
