@@ -46,7 +46,6 @@ export type PlantPot = z.infer<typeof potSchema>
 export type PlantLocation = z.infer<typeof locationSchema>
 export type CareCycleOverride = z.infer<typeof careCycleOverrideSchema>
 
-// Für das "Pflanze anlegen"-Formular: generierte Felder sind hier noch nicht bekannt
 export const createPlantSchema = plantSchema.omit({
   id: true,
   createdAt: true,
