@@ -17,7 +17,7 @@ For example:
 - increased heat exposure can shorten predicted watering cycles
 - user activity continuously influences reminder calculations
 
-> Status: Active development of Dexie Storage Connection
+> Status: Active testing of Dexie Storage Connection and Backend Logic
 
 > Planned first public release: Q3 2026
 

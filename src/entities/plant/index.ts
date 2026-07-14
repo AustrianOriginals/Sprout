@@ -13,3 +13,10 @@ export {
   LOCATION_TYPES,
   CARE_CATEGORIES,
 } from './model/constants'
+export {
+  getAllPlants,
+  getPlantById,
+  createPlant,
+  updatePlant,
+  deletePlant,
+} from './api/plant-storage'
