@@ -20,3 +20,4 @@ export {
   updatePlant,
   deletePlant,
 } from './api/plant-storage'
+export { usePlants, usePlant } from './model/hooks'

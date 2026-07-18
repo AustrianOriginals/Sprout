@@ -1,3 +1,8 @@
 export { calculateNextWateringDate } from './lib/calculate-next-watering-date'
 export { calculateBaseWateringIntervalDays } from './lib/watering-base-interval'
 export { estimateSoilVolumeCm3 } from './lib/pot-volume'
+export { getCareStatus, daysUntil, type CareStatus } from './lib/care-status'
+export { getNextWateringDateForPlant } from './api/get-next-watering-date'
+export { getWateringCareQueue, type CareQueueItem } from './api/get-care-queue'
+export { useWateringCareQueue } from './model/hooks'
+export { logWatering } from './api/log-watering'

@@ -17,7 +17,7 @@ For example:
 - increased heat exposure can shorten predicted watering cycles
 - user activity continuously influences reminder calculations
 
-> Status: Development of API Setup for watering in progress
+> Status: In development of AddPlantForm to test with real plant data
 
 > Planned first public release: Q3 2026
 
