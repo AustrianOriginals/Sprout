@@ -1,6 +1,6 @@
 import { getPlantById } from '@entities/plant'
 import { getCareEventsByPlantId } from '@entities/care-event'
-import type { CareEvent } from '@entities/care-event'
+import { getMostRecentPerformedAt } from '../lib/most-recent-event'
 import { calculateNextWateringDate } from '../lib/calculate-next-watering-date'
 
 export async function getNextWateringDateForPlant(plantId: string): Promise<Date | null> {
@@ -18,10 +18,4 @@ export async function getNextWateringDateForPlant(plantId: string): Promise<Date
   const lastWateredAt = getMostRecentPerformedAt(wateringEvents) ?? plant.createdAt
 
   return calculateNextWateringDate(plant, wateringEvents, lastWateredAt)
-}
-
-function getMostRecentPerformedAt(events: CareEvent[]): Date | undefined {
-  if (events.length === 0) return undefined
-  return events.reduce((latest, event) => (event.performedAt > latest.performedAt ? event : latest))
-    .performedAt
 }
