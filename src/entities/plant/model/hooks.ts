@@ -6,6 +6,10 @@ export function usePlants(): Plant[] | undefined {
   return useLiveQuery(() => getAllPlants())
 }
 
-export function usePlant(id: string | undefined): Plant | undefined {
-  return useLiveQuery(() => (id ? getPlantById(id) : undefined), [id])
+export function usePlant(id: string | undefined): Plant | null | undefined {
+  return useLiveQuery(async () => {
+    if (!id) return null
+    const plant = await getPlantById(id)
+    return plant ?? null
+  }, [id])
 }

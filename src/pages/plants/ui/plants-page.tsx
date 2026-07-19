@@ -20,9 +20,14 @@ export function PlantsPage() {
 
       <ul className="space-y-2">
         {plants?.map((plant) => (
-          <li key={plant.id} className="rounded-lg border p-3">
-            <p className="font-medium">{plant.name}</p>
-            <p className="text-sm text-muted-foreground">{plant.species}</p>
+          <li key={plant.id}>
+            <Link
+              to={`/plants/${plant.id}`}
+              className="block rounded-lg border p-3 hover:bg-muted/30"
+            >
+              <p className="font-medium">{plant.name}</p>
+              <p className="text-sm text-muted-foreground">{plant.species}</p>
+            </Link>
           </li>
         ))}
       </ul>

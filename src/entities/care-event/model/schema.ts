@@ -28,3 +28,4 @@ export const createCareEventSchema = baseCareEventSchema
     path: ['amountMl'],
   })
 export type CreateCareEventInput = z.infer<typeof createCareEventSchema>
+export type CareEventType = CareEvent['type']

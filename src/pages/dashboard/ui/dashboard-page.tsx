@@ -1,15 +1,28 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Droplet, Check } from 'lucide-react'
-import { useWateringCareQueue, logWatering, type CareQueueItem } from '@features/care-scheduling'
+import { Droplet, FlaskConical, Sprout, Check, type LucideIcon } from 'lucide-react'
+import type { CareEventType } from '@entities/care-event'
+import { useCareQueue, logCareEvent, type CareQueueItem } from '@features/care-scheduling'
 import { Button } from '@shared/ui/button'
 import { cn } from '@shared/lib/utils'
 import { getGreeting } from '../lib/greeting'
 import { getDashboardHeadline } from '../lib/headline'
 
+const CARE_TYPE_LABELS: Record<CareEventType, string> = {
+  watering: 'Water',
+  fertilizing: 'Fertilize',
+  repotting: 'Repot',
+}
+
+const CARE_TYPE_ICONS: Record<CareEventType, LucideIcon> = {
+  watering: Droplet,
+  fertilizing: FlaskConical,
+  repotting: Sprout,
+}
+
 export function DashboardPage() {
-  const queue = useWateringCareQueue()
-  const [loggingId, setLoggingId] = useState<string | null>(null)
+  const queue = useCareQueue()
+  const [loggingKey, setLoggingKey] = useState<string | null>(null)
 
   if (queue === undefined) {
     return <div className="mx-auto max-w-md p-4 text-muted-foreground">Loading…</div>
@@ -19,12 +32,13 @@ export function DashboardPage() {
   const dueTodayCount = queue.filter((item) => item.status === 'due_today').length
   const upcomingCount = queue.filter((item) => item.status === 'upcoming').length
 
-  async function handleMarkWatered(plantId: string) {
-    setLoggingId(plantId)
+  async function handleMarkDone(item: CareQueueItem) {
+    const key = `${item.plantId}-${item.type}`
+    setLoggingKey(key)
     try {
-      await logWatering(plantId)
+      await logCareEvent(item.type, item.plantId)
     } finally {
-      setLoggingId(null)
+      setLoggingKey(null)
     }
   }
 
@@ -56,10 +70,10 @@ export function DashboardPage() {
           <ul className="space-y-2">
             {queue.slice(0, 5).map((item) => (
               <CareQueueRow
-                key={item.plantId}
+                key={`${item.plantId}-${item.type}`}
                 item={item}
-                isLogging={loggingId === item.plantId}
-                onMarkWatered={() => handleMarkWatered(item.plantId)}
+                isLogging={loggingKey === `${item.plantId}-${item.type}`}
+                onMarkDone={() => handleMarkDone(item)}
               />
             ))}
           </ul>
@@ -92,7 +106,7 @@ function StatCard({
     tone === 'overdue'
       ? 'text-destructive'
       : tone === 'due_today'
-        ? 'text-amber-600'
+        ? 'text-warning'
         : 'text-foreground'
 
   return (
@@ -106,28 +120,30 @@ function StatCard({
 function CareQueueRow({
   item,
   isLogging,
-  onMarkWatered,
+  onMarkDone,
 }: {
   item: CareQueueItem
   isLogging: boolean
-  onMarkWatered: () => void
+  onMarkDone: () => void
 }) {
+  const Icon = CARE_TYPE_ICONS[item.type]
+
   return (
-    <li className="flex items-center justify-between rounded-lg border p-3">
-      <div>
-        <p className="font-medium">
-          <Droplet className="mr-1 inline h-4 w-4 text-blue-500" />
-          Water {item.plantName}
+    <li className="flex items-center justify-between gap-3 rounded-lg border p-3">
+      <Link to={`/plants/${item.plantId}`} className="min-w-0 flex-1">
+        <p className="truncate font-medium">
+          <Icon className="mr-1 inline h-4 w-4 text-blue-500" />
+          {CARE_TYPE_LABELS[item.type]} {item.plantName}
         </p>
         <p className="text-sm text-muted-foreground">{formatDueText(item)}</p>
-      </div>
+      </Link>
       <Button
         size="icon"
         variant="outline"
         disabled={isLogging}
-        onClick={onMarkWatered}
-        aria-label={`Mark ${item.plantName} as watered`}
-        className="rounded-full border-green-600 text-green-600 hover:bg-green-50"
+        onClick={onMarkDone}
+        aria-label={`Mark ${item.plantName} as ${CARE_TYPE_LABELS[item.type].toLowerCase()}ed`}
+        className="shrink-0 rounded-full border-primary text-primary hover:bg-primary/10"
       >
         <Check className="h-4 w-4" />
       </Button>
