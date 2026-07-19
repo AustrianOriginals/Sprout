@@ -17,7 +17,7 @@ For example:
 - increased heat exposure can shorten predicted watering cycles
 - user activity continuously influences reminder calculations
 
-> Status: In development of AddPlantForm to test with real plant data
+> Status: In development of PWA mechanics
 
 > Planned first public release: Q3 2026
 
@@ -59,21 +59,22 @@ Please keep in mind that the design can still change, its only the first draft a
 
 ### Implemented Features
 
-### Planned Features
-
 - plant creation and management
 - Algorithm which calcutlates next watering, fertilizing and repotting dates based on plant type, pot dimensions, material and drainage hole, sunlight exposure, plant size and watering history
 - If watering is done earlier or later than expected, the algorithm will adjust the next watering date accordingly
-- local encrypted storage
 - priority-based plant overview
 - offline-first architecture
+- Dark and Light Mode and seasonal Themes
+- Possibility to create custom cycles for watering, fertilizing and repotting for each plant
+
+### Planned Features
+
+- local encrypted storage
 - mobile push notifications
 - plant artwork / illustrations
 - advanced environmental adjustments
-- Dark and Light Mode and seasonal Themes
 - Donation button with possibility to show support
 - Photos added to each plant to track growth and health
-- Possibility to create custom cycles for watering, fertilizing and repotting for each plant
 
 ## Technical Focus
 

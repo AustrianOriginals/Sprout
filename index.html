@@ -7,6 +7,18 @@
 </head>
 <body>
 <div id="root"></div>
+<script>
+  (function () {
+    try {
+      var stored = localStorage.getItem('sprout-theme')
+      var mode = stored ? JSON.parse(stored).state.mode : 'system'
+      var isDark =
+        mode === 'dark' ||
+        (mode === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
+      document.documentElement.classList.toggle('dark', isDark)
+    } catch (e) {}
+  })()
+</script>
 <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>
