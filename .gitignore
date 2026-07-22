@@ -9,3 +9,6 @@ dist-ssr
 
 # JetBrains
 .idea
+
+dev-dist
+.vercel

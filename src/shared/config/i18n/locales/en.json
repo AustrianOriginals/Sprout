@@ -1,0 +1,145 @@
+{
+  "support": {
+    "title": "Support Sprout",
+    "description": "Sprout is built and maintained by a solo developer, ad-free, without tracking and monetization. If it has helped your plants (and you) thrive, a small contribution helps me to keep it that way and improve it further in the future.",
+    "donateButton": "Support on Ko-fi",
+    "redirectNotice": "You'll be redirected to an external site to complete your contribution.",
+    "feedbackTitle": "Feedback & suggestions",
+    "feedbackDescription": "Found a bug, or have an idea for a feature? I'd love to hear it.",
+    "emailButton": "Send feedback by email",
+    "githubLink": "Or open an issue on GitHub"
+  },
+  "nav": {
+    "support": "Support this project",
+    "switchTheme": "Switch theme",
+    "switchLanguage": "Switch language"
+  },
+  "dashboard": {
+    "greeting": {
+      "morning": "Good morning",
+      "afternoon": "Good afternoon",
+      "evening": "Good evening"
+    },
+    "headline": {
+      "allHappy": "Everything's happy",
+      "needsWater_one": "{{count}} plant needs water",
+      "needsWater_other": "{{count}} plants need water",
+      "thirstyToday_one": "{{count}} plant thirsty today",
+      "thirstyToday_other": "{{count}} plants thirsty today"
+    },
+    "stats": { "overdue": "Overdue", "dueToday": "Due Today", "comingUp": "Coming Up" },
+    "careQueue": "Care queue",
+    "noPlantsYet": "No plants yet.",
+    "addFirstPlant": "Add your first plant",
+    "viewAllPlants": "View all plants →",
+    "footer": "Stored privately on this device · Works offline",
+    "loading": "Loading…",
+    "careType": { "watering": "Water", "fertilizing": "Fertilize", "repotting": "Repot" },
+    "action": { "watering": "watered", "fertilizing": "fertilized", "repotting": "repotted" },
+    "markAsDone": "Mark {{plantName}} as {{action}}"
+  },
+  "care": {
+    "due": {
+      "overdue_one": "{{count}} day overdue",
+      "overdue_other": "{{count}} days overdue",
+      "today": "Due today",
+      "in_one": "in {{count}} day",
+      "in_other": "in {{count}} days"
+    }
+  },
+  "plants": {
+    "title": "Plants",
+    "addPlant": "Add plant",
+    "loading": "Loading…",
+    "empty": "No plants yet.",
+    "form": {
+      "sectionBasics": "Basic details",
+      "name": "Name",
+      "namePlaceholder": "e.g. Windowsill Monstera",
+      "species": "Species / variety",
+      "speciesPlaceholder": "e.g. Monstera Deliciosa",
+      "careCategory": "Care category",
+      "selectCategory": "Select category",
+      "sunlight": "Sunlight",
+      "selectSunlight": "Select sunlight",
+      "size": "Plant size",
+      "selectSize": "Select size",
+      "sectionPot": "Pot",
+      "diameter": "Diameter (cm)",
+      "height": "Height (cm) – optional",
+      "material": "Material",
+      "selectMaterial": "Select material",
+      "hasDrainageHole": "Pot has a drainage hole",
+      "sectionLocation": "Location",
+      "locationType": "Indoor / Outdoor",
+      "room": "Room – optional",
+      "roomPlaceholder": "e.g. Living room",
+      "sectionDates": "Dates",
+      "acquiredAt": "Acquired on",
+      "lastWateredAt": "Last watered on",
+      "pickDate": "Pick a date",
+      "sectionOverride": "Custom care cycles (optional)",
+      "overrideDescription": "Overrides the automatically calculated schedule with a fixed interval in days.",
+      "wateringDays": "Watering interval (days)",
+      "fertilizingDays": "Fertilizing interval (days)",
+      "repottingDays": "Repotting interval (days)",
+      "notes": "Notes – optional",
+      "submit": "Add plant",
+      "submitting": "Adding…",
+      "submitEdit": "Save changes",
+      "submittingEdit": "Saving…"
+    },
+    "careCategory": {
+      "tropical": "Tropical",
+      "succulent": "Succulent",
+      "cactus": "Cactus",
+      "fern": "Fern",
+      "herb": "Herb",
+      "flowering": "Flowering",
+      "other": "Other"
+    },
+    "sunlight": {
+      "low": "Low light",
+      "medium": "Medium light",
+      "bright_indirect": "Bright indirect",
+      "direct": "Direct sun"
+    },
+    "size": { "small": "Small", "medium": "Medium", "large": "Large" },
+    "potMaterial": {
+      "plastic": "Plastic",
+      "terracotta": "Terracotta",
+      "ceramic": "Ceramic",
+      "glass": "Glass",
+      "other": "Other"
+    },
+    "locationType": { "indoor": "Indoor", "outdoor": "Outdoor" }
+  },
+  "plantDetail": {
+    "loading": "Loading…",
+    "notFound": "Plant not found.",
+    "backToOverview": "Back to overview",
+    "edit": "Edit",
+    "upcomingCare": "Upcoming care",
+    "history": "History",
+    "noHistory": "No entries yet.",
+    "deletePlant": "Delete plant",
+    "deleteConfirmTitle": "Really delete this plant?",
+    "deleteConfirmDescription": "This will permanently delete \"{{name}}\" along with its complete care and photo history.",
+    "cancel": "Cancel",
+    "deleting": "Deleting…",
+    "delete": "Delete"
+  },
+  "photos": {
+    "title": "Photos",
+    "addPhoto": "Add photo",
+    "uploading": "Saving…",
+    "noPhotos": "No photos yet.",
+    "uploadError": "Photo could not be saved."
+  },
+  "validation": {
+    "nameRequired": "Name is required",
+    "speciesRequired": "Species/variety is required",
+    "amountOnlyForWatering": "Water amount is only allowed for watering events",
+    "photoTooLarge": "Photo must be at most 5 MB"
+  }
+}

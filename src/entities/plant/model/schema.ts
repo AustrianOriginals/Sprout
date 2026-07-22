@@ -27,8 +27,8 @@ const careCycleOverrideSchema = z.object({
 
 export const plantSchema = z.object({
   id: z.string().uuid(),
-  name: z.string().trim().min(1, 'Name ist erforderlich').max(80),
-  species: z.string().trim().min(1, 'Art/Sorte ist erforderlich').max(120),
+  name: z.string().trim().min(1, 'validation.nameRequired').max(80),
+  species: z.string().trim().min(1, 'validation.speciesRequired').max(120),
   careCategory: z.enum(CARE_CATEGORIES),
   sunlight: z.enum(SUNLIGHT_EXPOSURES),
   size: z.enum(PLANT_SIZES),

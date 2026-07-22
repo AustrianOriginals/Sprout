@@ -1,22 +1,22 @@
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { usePlants } from '@entities/plant'
 
 export function PlantsPage() {
+  const { t } = useTranslation()
   const plants = usePlants()
 
   return (
     <div className="mx-auto max-w-md space-y-4 p-4">
       <div className="flex items-center justify-between">
-        <h1 className="font-serif text-2xl">Plants</h1>
+        <h1 className="font-serif text-2xl">{t('plants.title')}</h1>
         <Link to="/plants/new" className="text-primary underline">
-          + Add plant
+          + {t('plants.addPlant')}
         </Link>
       </div>
 
-      {plants === undefined && <p>Lädt …</p>}
-      {plants?.length === 0 && (
-        <p className="text-muted-foreground">Noch keine Pflanzen angelegt.</p>
-      )}
+      {plants === undefined && <p>{t('plants.loading')}</p>}
+      {plants?.length === 0 && <p className="text-muted-foreground">{t('plants.empty')}</p>}
 
       <ul className="space-y-2">
         {plants?.map((plant) => (

@@ -8,3 +8,4 @@ export {
   createCareEvent,
   deleteCareEvent,
 } from './api/care-event-storage'
+export { encryptCareEvent } from './api/care-event-storage'

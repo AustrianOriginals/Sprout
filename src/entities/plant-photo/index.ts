@@ -7,3 +7,5 @@ export {
   createPlantPhoto,
   deletePlantPhoto,
 } from './api/plant-photo-storage'
+export { usePhotosByPlantId } from './model/hooks'
+export { PhotoGallery } from './ui/photo-gallery'

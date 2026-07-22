@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useTranslation } from 'react-i18next'
 import { CalendarIcon } from 'lucide-react'
 import {
   CARE_CATEGORIES,
@@ -41,6 +42,7 @@ type CreatePlantFormProps = {
 }
 
 export function CreatePlantForm({ onSuccess }: CreatePlantFormProps) {
+  const { t, i18n } = useTranslation()
   const form = useForm<CreatePlantFormValues>({
     resolver: zodResolver(createPlantFormSchema),
     defaultValues,
@@ -55,18 +57,17 @@ export function CreatePlantForm({ onSuccess }: CreatePlantFormProps) {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        {/* Grunddaten */}
         <div className="space-y-4">
-          <h3 className="font-serif text-lg">Grunddaten</h3>
+          <h3 className="font-serif text-lg">{t('plants.form.sectionBasics')}</h3>
 
           <FormField
             control={form.control}
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Name</FormLabel>
+                <FormLabel>{t('plants.form.name')}</FormLabel>
                 <FormControl>
-                  <Input placeholder="z.B. Fensterbank-Monstera" {...field} />
+                  <Input placeholder={t('plants.form.namePlaceholder')} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -78,9 +79,9 @@ export function CreatePlantForm({ onSuccess }: CreatePlantFormProps) {
             name="species"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Art / Sorte</FormLabel>
+                <FormLabel>{t('plants.form.species')}</FormLabel>
                 <FormControl>
-                  <Input placeholder="z.B. Monstera Deliciosa" {...field} />
+                  <Input placeholder={t('plants.form.speciesPlaceholder')} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -92,17 +93,23 @@ export function CreatePlantForm({ onSuccess }: CreatePlantFormProps) {
             name="careCategory"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Pflegekategorie</FormLabel>
+                <FormLabel>{t('plants.form.careCategory')}</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
                     <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Kategorie wählen" />
+                      <SelectValue>
+                        {(value: string | null) =>
+                          value
+                            ? t(`plants.careCategory.${value}`)
+                            : t('plants.form.selectCategory')
+                        }
+                      </SelectValue>
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
                     {CARE_CATEGORIES.map((category) => (
                       <SelectItem key={category} value={category}>
-                        {category}
+                        {t(`plants.careCategory.${category}`)}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -117,17 +124,21 @@ export function CreatePlantForm({ onSuccess }: CreatePlantFormProps) {
             name="sunlight"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Lichtbedarf</FormLabel>
+                <FormLabel>{t('plants.form.sunlight')}</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
                     <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Lichtbedarf wählen" />
+                      <SelectValue>
+                        {(value: string | null) =>
+                          value ? t(`plants.sunlight.${value}`) : t('plants.form.selectSunlight')
+                        }
+                      </SelectValue>
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
                     {SUNLIGHT_EXPOSURES.map((exposure) => (
                       <SelectItem key={exposure} value={exposure}>
-                        {exposure}
+                        {t(`plants.sunlight.${exposure}`)}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -142,17 +153,21 @@ export function CreatePlantForm({ onSuccess }: CreatePlantFormProps) {
             name="size"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Pflanzengröße</FormLabel>
+                <FormLabel>{t('plants.form.size')}</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
                     <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Größe wählen" />
+                      <SelectValue>
+                        {(value: string | null) =>
+                          value ? t(`plants.size.${value}`) : t('plants.form.selectSize')
+                        }
+                      </SelectValue>
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
                     {PLANT_SIZES.map((size) => (
                       <SelectItem key={size} value={size}>
-                        {size}
+                        {t(`plants.size.${size}`)}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -163,16 +178,15 @@ export function CreatePlantForm({ onSuccess }: CreatePlantFormProps) {
           />
         </div>
 
-        {/* Topf */}
         <div className="space-y-4">
-          <h3 className="font-serif text-lg">Topf</h3>
+          <h3 className="font-serif text-lg">{t('plants.form.sectionPot')}</h3>
 
           <FormField
             control={form.control}
             name="pot.diameterCm"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Durchmesser (cm)</FormLabel>
+                <FormLabel>{t('plants.form.diameter')}</FormLabel>
                 <FormControl>
                   <Input
                     type="number"
@@ -190,7 +204,7 @@ export function CreatePlantForm({ onSuccess }: CreatePlantFormProps) {
             name="pot.heightCm"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Höhe (cm) – optional</FormLabel>
+                <FormLabel>{t('plants.form.height')}</FormLabel>
                 <FormControl>
                   <Input
                     type="number"
@@ -210,17 +224,21 @@ export function CreatePlantForm({ onSuccess }: CreatePlantFormProps) {
             name="pot.material"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Material</FormLabel>
+                <FormLabel>{t('plants.form.material')}</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
                     <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Material wählen" />
+                      <SelectValue>
+                        {(value: string | null) =>
+                          value ? t(`plants.potMaterial.${value}`) : t('plants.form.selectMaterial')
+                        }
+                      </SelectValue>
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
                     {POT_MATERIALS.map((material) => (
                       <SelectItem key={material} value={material}>
-                        {material}
+                        {t(`plants.potMaterial.${material}`)}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -238,32 +256,37 @@ export function CreatePlantForm({ onSuccess }: CreatePlantFormProps) {
                 <FormControl>
                   <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                 </FormControl>
-                <FormLabel className="!mt-0">Topf hat Abflussloch</FormLabel>
+                <FormLabel className="!mt-0">{t('plants.form.hasDrainageHole')}</FormLabel>
               </FormItem>
             )}
           />
         </div>
 
-        {/* Standort */}
         <div className="space-y-4">
-          <h3 className="font-serif text-lg">Standort</h3>
+          <h3 className="font-serif text-lg">{t('plants.form.sectionLocation')}</h3>
 
           <FormField
             control={form.control}
             name="location.type"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Drinnen / Draußen</FormLabel>
+                <FormLabel>{t('plants.form.locationType')}</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
                     <SelectTrigger className="w-full">
-                      <SelectValue />
+                      <SelectValue>
+                        {(value: string | null) =>
+                          value
+                            ? t(`plants.locationType.${value}`)
+                            : t('plants.form.selectLocationType')
+                        }
+                      </SelectValue>
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
                     {LOCATION_TYPES.map((type) => (
                       <SelectItem key={type} value={type}>
-                        {type}
+                        {t(`plants.locationType.${type}`)}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -278,9 +301,13 @@ export function CreatePlantForm({ onSuccess }: CreatePlantFormProps) {
             name="location.room"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Raum – optional</FormLabel>
+                <FormLabel>{t('plants.form.room')}</FormLabel>
                 <FormControl>
-                  <Input placeholder="z.B. Wohnzimmer" {...field} value={field.value ?? ''} />
+                  <Input
+                    placeholder={t('plants.form.roomPlaceholder')}
+                    {...field}
+                    value={field.value ?? ''}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -288,16 +315,15 @@ export function CreatePlantForm({ onSuccess }: CreatePlantFormProps) {
           />
         </div>
 
-        {/* Zeitpunkte */}
         <div className="space-y-4">
-          <h3 className="font-serif text-lg">Zeitpunkte</h3>
+          <h3 className="font-serif text-lg">{t('plants.form.sectionDates')}</h3>
 
           <FormField
             control={form.control}
             name="acquiredAt"
             render={({ field }) => (
               <FormItem className="flex flex-col">
-                <FormLabel>Angeschafft am</FormLabel>
+                <FormLabel>{t('plants.form.acquiredAt')}</FormLabel>
                 <Popover>
                   <FormControl>
                     <PopoverTrigger
@@ -310,7 +336,9 @@ export function CreatePlantForm({ onSuccess }: CreatePlantFormProps) {
                           )}
                         >
                           <CalendarIcon className="mr-2 h-4 w-4" />
-                          {field.value ? field.value.toLocaleDateString('de-DE') : 'Datum wählen'}
+                          {field.value
+                            ? field.value.toLocaleDateString(i18n.language)
+                            : t('plants.form.pickDate')}
                         </Button>
                       }
                     />
@@ -329,7 +357,7 @@ export function CreatePlantForm({ onSuccess }: CreatePlantFormProps) {
             name="lastWateredAt"
             render={({ field }) => (
               <FormItem className="flex flex-col">
-                <FormLabel>Zuletzt gegossen am</FormLabel>
+                <FormLabel>{t('plants.form.lastWateredAt')}</FormLabel>
                 <Popover>
                   <FormControl>
                     <PopoverTrigger
@@ -342,7 +370,9 @@ export function CreatePlantForm({ onSuccess }: CreatePlantFormProps) {
                           )}
                         >
                           <CalendarIcon className="mr-2 h-4 w-4" />
-                          {field.value ? field.value.toLocaleDateString('de-DE') : 'Datum wählen'}
+                          {field.value
+                            ? field.value.toLocaleDateString(i18n.language)
+                            : t('plants.form.pickDate')}
                         </Button>
                       }
                     />
@@ -357,20 +387,16 @@ export function CreatePlantForm({ onSuccess }: CreatePlantFormProps) {
           />
         </div>
 
-        {/* Pflegezyklus-Override */}
         <div className="space-y-4">
-          <h3 className="font-serif text-lg">Eigene Pflegezyklen (optional)</h3>
-          <p className="text-sm text-muted-foreground">
-            Überschreibt den automatisch berechneten Algorithmus mit einem festen Intervall in
-            Tagen.
-          </p>
+          <h3 className="font-serif text-lg">{t('plants.form.sectionOverride')}</h3>
+          <p className="text-sm text-muted-foreground">{t('plants.form.overrideDescription')}</p>
 
           <FormField
             control={form.control}
             name="careCycleOverride.wateringDays"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Gieß-Intervall (Tage)</FormLabel>
+                <FormLabel>{t('plants.form.wateringDays')}</FormLabel>
                 <FormControl>
                   <Input
                     type="number"
@@ -390,7 +416,7 @@ export function CreatePlantForm({ onSuccess }: CreatePlantFormProps) {
             name="careCycleOverride.fertilizingDays"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Dünge-Intervall (Tage)</FormLabel>
+                <FormLabel>{t('plants.form.fertilizingDays')}</FormLabel>
                 <FormControl>
                   <Input
                     type="number"
@@ -410,7 +436,7 @@ export function CreatePlantForm({ onSuccess }: CreatePlantFormProps) {
             name="careCycleOverride.repottingDays"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Umtopf-Intervall (Tage)</FormLabel>
+                <FormLabel>{t('plants.form.repottingDays')}</FormLabel>
                 <FormControl>
                   <Input
                     type="number"
@@ -426,13 +452,12 @@ export function CreatePlantForm({ onSuccess }: CreatePlantFormProps) {
           />
         </div>
 
-        {/* Notizen */}
         <FormField
           control={form.control}
           name="notes"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Notizen – optional</FormLabel>
+              <FormLabel>{t('plants.form.notes')}</FormLabel>
               <FormControl>
                 <Textarea {...field} value={field.value ?? ''} />
               </FormControl>
@@ -442,7 +467,7 @@ export function CreatePlantForm({ onSuccess }: CreatePlantFormProps) {
         />
 
         <Button type="submit" disabled={form.formState.isSubmitting} className="w-full">
-          {form.formState.isSubmitting ? 'Wird angelegt …' : 'Pflanze anlegen'}
+          {form.formState.isSubmitting ? t('plants.form.submitting') : t('plants.form.submit')}
         </Button>
       </form>
     </Form>

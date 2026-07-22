@@ -21,3 +21,4 @@ export {
   deletePlant,
 } from './api/plant-storage'
 export { usePlants, usePlant } from './model/hooks'
+export { encryptPlant } from './api/plant-storage'

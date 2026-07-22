@@ -60,4 +60,14 @@ describe('plant-storage', () => {
     const invalidInput = { ...samplePlant, name: '' }
     await expect(createPlant(invalidInput as CreatePlantInput)).rejects.toThrow()
   })
+
+  it('stores name and species encrypted, not as plain text', async () => {
+    const created = await createPlant(samplePlant)
+
+    const rawRecord = await db.plants.get(created.id)
+    const rawJson = JSON.stringify(rawRecord)
+
+    expect(rawJson).not.toContain(samplePlant.name)
+    expect(rawJson).not.toContain(samplePlant.species)
+  })
 })

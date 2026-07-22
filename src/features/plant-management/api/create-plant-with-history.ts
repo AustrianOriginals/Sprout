@@ -1,6 +1,6 @@
 import { db } from '@shared/api/db'
-import { plantSchema, type Plant } from '@entities/plant'
-import { careEventSchema } from '@entities/care-event'
+import { plantSchema, encryptPlant, type Plant } from '@entities/plant'
+import { careEventSchema, encryptCareEvent } from '@entities/care-event'
 import type { CreatePlantFormValues } from '../model/create-plant-form-schema'
 
 export async function createPlantWithInitialWatering(input: CreatePlantFormValues): Promise<Plant> {
@@ -23,9 +23,12 @@ export async function createPlantWithInitialWatering(input: CreatePlantFormValue
     createdAt: now,
   })
 
+  const storedPlant = await encryptPlant(validatedPlant)
+  const storedCareEvent = await encryptCareEvent(careEvent)
+
   await db.transaction('rw', db.plants, db.careEvents, async () => {
-    await db.plants.add(validatedPlant)
-    await db.careEvents.add(careEvent)
+    await db.plants.add(storedPlant as unknown as Plant)
+    await db.careEvents.add(storedCareEvent as unknown as typeof careEvent)
   })
 
   return validatedPlant

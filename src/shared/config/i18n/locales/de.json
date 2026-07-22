@@ -1,0 +1,141 @@
+{
+  "support": {
+    "title": "Sprout unterstützen",
+    "description": "Sprout wird von einem Einzelentwickler gebaut und gepflegt – werbefrei, ohne Tracking und ohne Monetarisierung. Wenn die App deinen Pflanzen (und dir) geholfen hat, hilft ein kleiner Beitrag dabei, das so zu halten und die App weiterzuentwickeln.",
+    "donateButton": "Auf Ko-fi unterstützen",
+    "redirectNotice": "Du wirst zu einer externen Seite weitergeleitet, um deinen Beitrag abzuschließen.",
+    "feedbackTitle": "Feedback & Vorschläge",
+    "feedbackDescription": "Einen Fehler gefunden oder eine Idee für ein Feature? Ich freue mich, davon zu hören.",
+    "emailButton": "Feedback per E-Mail senden",
+    "githubLink": "Oder ein Issue auf GitHub eröffnen"
+  },
+  "nav": {
+    "support": "Projekt unterstützen",
+    "switchTheme": "Theme wechseln",
+    "switchLanguage": "Sprache wechseln"
+  },
+  "dashboard": {
+    "greeting": { "morning": "Guten Morgen", "afternoon": "Guten Tag", "evening": "Guten Abend" },
+    "headline": {
+      "allHappy": "Allen geht's gut",
+      "needsWater_one": "{{count}} Pflanze braucht Wasser",
+      "needsWater_other": "{{count}} Pflanzen brauchen Wasser",
+      "thirstyToday_one": "{{count}} Pflanze ist heute durstig",
+      "thirstyToday_other": "{{count}} Pflanzen sind heute durstig"
+    },
+    "stats": { "overdue": "Überfällig", "dueToday": "Heute fällig", "comingUp": "Demnächst" },
+    "careQueue": "Pflegeplan",
+    "noPlantsYet": "Noch keine Pflanzen angelegt.",
+    "addFirstPlant": "Erste Pflanze hinzufügen",
+    "viewAllPlants": "Alle Pflanzen ansehen →",
+    "footer": "Wird privat auf diesem Gerät gespeichert · Funktioniert offline",
+    "loading": "Lädt …",
+    "careType": { "watering": "Gießen", "fertilizing": "Düngen", "repotting": "Umtopfen" },
+    "action": { "watering": "gegossen", "fertilizing": "gedüngt", "repotting": "umgetopft" },
+    "markAsDone": "{{plantName}} als {{action}} markieren"
+  },
+  "care": {
+    "due": {
+      "overdue_one": "{{count}} Tag überfällig",
+      "overdue_other": "{{count}} Tage überfällig",
+      "today": "Heute fällig",
+      "in_one": "in {{count}} Tag",
+      "in_other": "in {{count}} Tagen"
+    }
+  },
+  "plants": {
+    "title": "Pflanzen",
+    "addPlant": "Pflanze hinzufügen",
+    "loading": "Lädt …",
+    "empty": "Noch keine Pflanzen angelegt.",
+    "form": {
+      "sectionBasics": "Grunddaten",
+      "name": "Name",
+      "namePlaceholder": "z.B. Fensterbank-Monstera",
+      "species": "Art / Sorte",
+      "speciesPlaceholder": "z.B. Monstera Deliciosa",
+      "careCategory": "Pflegekategorie",
+      "selectCategory": "Kategorie wählen",
+      "sunlight": "Lichtbedarf",
+      "selectSunlight": "Lichtbedarf wählen",
+      "size": "Pflanzengröße",
+      "selectSize": "Größe wählen",
+      "sectionPot": "Topf",
+      "diameter": "Durchmesser (cm)",
+      "height": "Höhe (cm) – optional",
+      "material": "Material",
+      "selectMaterial": "Material wählen",
+      "hasDrainageHole": "Topf hat Abflussloch",
+      "sectionLocation": "Standort",
+      "locationType": "Drinnen / Draußen",
+      "room": "Raum – optional",
+      "roomPlaceholder": "z.B. Wohnzimmer",
+      "sectionDates": "Zeitpunkte",
+      "acquiredAt": "Angeschafft am",
+      "lastWateredAt": "Zuletzt gegossen am",
+      "pickDate": "Datum wählen",
+      "sectionOverride": "Eigene Pflegezyklen (optional)",
+      "overrideDescription": "Überschreibt den automatisch berechneten Algorithmus mit einem festen Intervall in Tagen.",
+      "wateringDays": "Gieß-Intervall (Tage)",
+      "fertilizingDays": "Dünge-Intervall (Tage)",
+      "repottingDays": "Umtopf-Intervall (Tage)",
+      "notes": "Notizen – optional",
+      "submit": "Pflanze anlegen",
+      "submitting": "Wird angelegt …",
+      "submitEdit": "Änderungen speichern",
+      "submittingEdit": "Wird gespeichert …"
+    },
+    "careCategory": {
+      "tropical": "Tropisch",
+      "succulent": "Sukkulente",
+      "cactus": "Kaktus",
+      "fern": "Farn",
+      "herb": "Kraut",
+      "flowering": "Blühend",
+      "other": "Sonstige"
+    },
+    "sunlight": {
+      "low": "Wenig Licht",
+      "medium": "Mittleres Licht",
+      "bright_indirect": "Hell, indirekt",
+      "direct": "Direkte Sonne"
+    },
+    "size": { "small": "Klein", "medium": "Mittel", "large": "Groß" },
+    "potMaterial": {
+      "plastic": "Kunststoff",
+      "terracotta": "Terrakotta",
+      "ceramic": "Keramik",
+      "glass": "Glas",
+      "other": "Sonstige"
+    },
+    "locationType": { "indoor": "Drinnen", "outdoor": "Draußen" }
+  },
+  "plantDetail": {
+    "loading": "Lädt …",
+    "notFound": "Pflanze nicht gefunden.",
+    "backToOverview": "Zurück zur Übersicht",
+    "edit": "Bearbeiten",
+    "upcomingCare": "Anstehende Pflege",
+    "history": "Verlauf",
+    "noHistory": "Noch keine Einträge.",
+    "deletePlant": "Pflanze löschen",
+    "deleteConfirmTitle": "Pflanze wirklich löschen?",
+    "deleteConfirmDescription": "Dies löscht \"{{name}}\" sowie die komplette Pflege- und Foto-Historie unwiderruflich.",
+    "cancel": "Abbrechen",
+    "deleting": "Wird gelöscht …",
+    "delete": "Löschen"
+  },
+  "photos": {
+    "title": "Fotos",
+    "addPhoto": "Foto hinzufügen",
+    "uploading": "Wird gespeichert …",
+    "noPhotos": "Noch keine Fotos.",
+    "uploadError": "Foto konnte nicht gespeichert werden."
+  },
+  "validation": {
+    "nameRequired": "Name ist erforderlich",
+    "speciesRequired": "Art/Sorte ist erforderlich",
+    "amountOnlyForWatering": "Wassermenge ist nur bei Gieß-Events zulässig",
+    "photoTooLarge": "Foto darf maximal 5 MB groß sein"
+  }
+}

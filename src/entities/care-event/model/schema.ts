@@ -16,7 +16,7 @@ const amountOnlyForWatering = (event: { type: string; amountMl?: number }) =>
   event.amountMl === undefined || event.type === 'watering'
 
 export const careEventSchema = baseCareEventSchema.refine(amountOnlyForWatering, {
-  message: 'Wassermenge ist nur bei Gieß-Events zulässig',
+  message: 'validation.amountOnlyForWatering',
   path: ['amountMl'],
 })
 export type CareEvent = z.infer<typeof careEventSchema>
@@ -24,7 +24,7 @@ export type CareEvent = z.infer<typeof careEventSchema>
 export const createCareEventSchema = baseCareEventSchema
   .omit({ id: true, createdAt: true })
   .refine(amountOnlyForWatering, {
-    message: 'Wassermenge ist nur bei Gieß-Events zulässig',
+    message: 'validation.amountOnlyForWatering',
     path: ['amountMl'],
   })
 export type CreateCareEventInput = z.infer<typeof createCareEventSchema>

@@ -1,9 +1,14 @@
-export function getDashboardHeadline(overdueCount: number, dueTodayCount: number): string {
+type HeadlineResult = { key: string; count?: number }
+
+export function getDashboardHeadlineKey(
+  overdueCount: number,
+  dueTodayCount: number
+): HeadlineResult {
   if (overdueCount > 0) {
-    return `${overdueCount} plant${overdueCount === 1 ? '' : 's'} need${overdueCount === 1 ? 's' : ''} water`
+    return { key: 'dashboard.headline.needsWater', count: overdueCount }
   }
   if (dueTodayCount > 0) {
-    return `${dueTodayCount} plant${dueTodayCount === 1 ? '' : 's'} thirsty today`
+    return { key: 'dashboard.headline.thirstyToday', count: dueTodayCount }
   }
-  return "Everything's happy"
+  return { key: 'dashboard.headline.allHappy' }
 }

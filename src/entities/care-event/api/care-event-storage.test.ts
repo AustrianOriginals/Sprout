@@ -65,4 +65,11 @@ describe('care-event-storage', () => {
 
     await expect(createCareEvent(invalidEvent)).rejects.toThrow()
   })
+
+  it('stores note encrypted, not as plain text', async () => {
+    const created = await createCareEvent({ ...sampleCareEvent, note: 'Geheime Notiz' })
+    const rawRecord = await db.careEvents.get(created.id)
+
+    expect(JSON.stringify(rawRecord?.note)).not.toContain('Geheime Notiz')
+  })
 })

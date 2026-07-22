@@ -17,7 +17,7 @@ For example:
 - increased heat exposure can shorten predicted watering cycles
 - user activity continuously influences reminder calculations
 
-> Status: In development of PWA mechanics
+> Status: V1 done, private deployment and testing phase ongoing, Drawing Illustrations for plants and app logo
 
 > Planned first public release: Q3 2026
 
@@ -66,15 +66,14 @@ Please keep in mind that the design can still change, its only the first draft a
 - offline-first architecture
 - Dark and Light Mode and seasonal Themes
 - Possibility to create custom cycles for watering, fertilizing and repotting for each plant
+- local encrypted storage
+- Photos added to each plant to track growth and health
+- Language settings (choosing between german and english)
 
 ### Planned Features
 
-- local encrypted storage
-- mobile push notifications
-- plant artwork / illustrations
-- advanced environmental adjustments
-- Donation button with possibility to show support
-- Photos added to each plant to track growth and health
+- plant artwork / illustrations / Logo
+- Donation button with possibility to show support (after the first public release and a few months in)
 
 ## Technical Focus
 

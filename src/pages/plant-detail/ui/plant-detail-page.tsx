@@ -1,9 +1,11 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { usePlant } from '@entities/plant'
 import { useCareEventsByPlantId } from '@entities/care-event/model/hooks'
-import { useCareQueue } from '@features/care-scheduling'
-import { deletePlantWithHistory } from '@features/plant-management/api/delete-plant-with-history'
+import { PhotoGallery } from '@entities/plant-photo'
+import { useCareQueue, formatDueText } from '@features/care-scheduling'
+import { deletePlantWithHistory } from '@features/plant-management'
 import { Button } from '@shared/ui/button'
 import {
   AlertDialog,
@@ -18,6 +20,7 @@ import {
 } from '@shared/ui/alert-dialog'
 
 export function PlantDetailPage() {
+  const { t, i18n } = useTranslation()
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
   const plant = usePlant(id)
@@ -26,15 +29,17 @@ export function PlantDetailPage() {
   const [isDeleting, setIsDeleting] = useState(false)
 
   if (plant === undefined) {
-    return <div className="mx-auto max-w-md p-4 text-muted-foreground">Loading…</div>
+    return (
+      <div className="mx-auto max-w-md p-4 text-muted-foreground">{t('plantDetail.loading')}</div>
+    )
   }
 
   if (plant === null) {
     return (
       <div className="mx-auto max-w-md space-y-2 p-4">
-        <p>Pflanze nicht gefunden.</p>
+        <p>{t('plantDetail.notFound')}</p>
         <Link to="/plants" className="text-primary underline">
-          Zurück zur Übersicht
+          {t('plantDetail.backToOverview')}
         </Link>
       </div>
     )
@@ -65,43 +70,46 @@ export function PlantDetailPage() {
         </div>
         <Link to={`/plants/${plant.id}/edit`}>
           <Button variant="outline" size="sm">
-            Edit
+            {t('plantDetail.edit')}
           </Button>
         </Link>
       </div>
 
       <div className="space-y-1 rounded-lg border p-3 text-sm">
-        <p>☀️ {plant.sunlight}</p>
+        <p>☀️ {t(`plants.sunlight.${plant.sunlight}`)}</p>
         <p>
-          🪴 {plant.pot.diameterCm}cm, {plant.pot.material}
+          🪴 {plant.pot.diameterCm}cm, {t(`plants.potMaterial.${plant.pot.material}`)}
         </p>
         <p>
-          📍 {plant.location.type}
+          📍 {t(`plants.locationType.${plant.location.type}`)}
           {plant.location.room ? ` – ${plant.location.room}` : ''}
         </p>
         {plant.notes && <p className="text-muted-foreground">{plant.notes}</p>}
       </div>
 
+      <PhotoGallery plantId={plant.id} />
+
       <div className="space-y-2">
-        <h2 className="font-serif text-lg">Upcoming care</h2>
+        <h2 className="font-serif text-lg">{t('plantDetail.upcomingCare')}</h2>
         <ul className="space-y-1 text-sm">
           {upcomingCare.map((item) => (
             <li key={item.type}>
-              {item.type}: {item.dueDate.toLocaleDateString('de-DE')} ({item.status})
+              {t(`dashboard.careType.${item.type}`)}: {formatDueText(item, t)}
             </li>
           ))}
         </ul>
       </div>
 
       <div className="space-y-2">
-        <h2 className="font-serif text-lg">History</h2>
+        <h2 className="font-serif text-lg">{t('plantDetail.history')}</h2>
         {sortedHistory.length === 0 ? (
-          <p className="text-sm text-muted-foreground">Noch keine Einträge.</p>
+          <p className="text-sm text-muted-foreground">{t('plantDetail.noHistory')}</p>
         ) : (
           <ul className="space-y-1 text-sm">
             {sortedHistory.slice(0, 10).map((event) => (
               <li key={event.id}>
-                {event.type} – {event.performedAt.toLocaleDateString('de-DE')}
+                {t(`dashboard.careType.${event.type}`)} –{' '}
+                {event.performedAt.toLocaleDateString(i18n.language)}
               </li>
             ))}
           </ul>
@@ -112,22 +120,21 @@ export function PlantDetailPage() {
         <AlertDialogTrigger
           render={
             <Button variant="destructive" className="w-full">
-              Delete plant
+              {t('plantDetail.deletePlant')}
             </Button>
           }
         />
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Pflanze wirklich löschen?</AlertDialogTitle>
+            <AlertDialogTitle>{t('plantDetail.deleteConfirmTitle')}</AlertDialogTitle>
             <AlertDialogDescription>
-              Dies löscht "{plant.name}" sowie die komplette Pflege- und Foto-Historie
-              unwiderruflich.
+              {t('plantDetail.deleteConfirmDescription', { name: plant.name })}
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Abbrechen</AlertDialogCancel>
+            <AlertDialogCancel>{t('plantDetail.cancel')}</AlertDialogCancel>
             <AlertDialogAction onClick={handleDelete} disabled={isDeleting}>
-              {isDeleting ? 'Wird gelöscht …' : 'Löschen'}
+              {isDeleting ? t('plantDetail.deleting') : t('plantDetail.delete')}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

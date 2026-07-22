@@ -1,9 +1,14 @@
 import { Link, Outlet } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import { Heart } from 'lucide-react'
 import { useAppliedTheme } from '@shared/model/use-applied-theme'
 import { ThemeToggle } from '@shared/ui/theme-toggle'
+import { LanguageToggle } from '@shared/ui/language-toggle'
+import { Button } from '@shared/ui/button'
 
 export function AppLayout() {
   useAppliedTheme()
+  const { t } = useTranslation()
 
   return (
     <div className="min-h-dvh bg-background text-foreground">
@@ -13,7 +18,15 @@ export function AppLayout() {
             <span aria-hidden>🌱</span>
             Sprout
           </Link>
-          <ThemeToggle />
+          <div className="flex items-center gap-1">
+            <Link to="/support">
+              <Button variant="ghost" size="icon" aria-label={t('nav.support')}>
+                <Heart className="h-4 w-4" />
+              </Button>
+            </Link>
+            <LanguageToggle />
+            <ThemeToggle />
+          </div>
         </div>
       </header>
       <main>

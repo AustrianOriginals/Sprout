@@ -5,6 +5,7 @@ import { PlantsPage } from '@pages/plants'
 import { AddPlantPage } from '@pages/add-plant'
 import { PlantDetailPage } from '@pages/plant-detail/ui/plant-detail-page'
 import { EditPlantPage } from '@pages/edit-plant/ui/edit-plant-page'
+import { SupportPage } from '@pages/support'
 
 export function AppRouter() {
   return (
@@ -16,6 +17,7 @@ export function AppRouter() {
           <Route path="/plants/new" element={<AddPlantPage />} />
           <Route path="/plants/:id" element={<PlantDetailPage />} />
           <Route path="/plants/:id/edit" element={<EditPlantPage />} />
+          <Route path="/support" element={<SupportPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

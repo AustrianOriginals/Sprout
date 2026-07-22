@@ -65,4 +65,12 @@ describe('plant-photo-storage', () => {
 
     await expect(createPlantPhoto(oversizedInput)).rejects.toThrow()
   })
+
+  it('stores caption and image encrypted, not as plain text/raw Blob', async () => {
+    const created = await createPlantPhoto(samplePhoto)
+    const rawRecord = await db.plantPhotos.get(created.id)
+
+    expect(JSON.stringify(rawRecord?.caption)).not.toContain(samplePhoto.caption)
+    expect(rawRecord?.image).not.toBeInstanceOf(Blob)
+  })
 })
