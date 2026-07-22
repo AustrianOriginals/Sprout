@@ -74,6 +74,8 @@ Please keep in mind that the design can still change, its only the first draft a
 
 - plant artwork / illustrations / Logo
 - Donation button with possibility to show support (after the first public release and a few months in)
+- Backup/Export possibility for switching devices for example
+- Photo-Kompression to save storage space for final release
 
 ## Technical Focus
 
